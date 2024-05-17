@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "393204291496",
+    "project_id": "abar-83e34",
+    "storage_bucket": "abar-83e34.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:393204291496:android:8fe72aa0be1b28195a2f9d",
+        "android_client_info": {
+          "package_name": "com.example.abar"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWu2Yn0iGys7WbCaHcZ5DcdpSkXB47Hjc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
