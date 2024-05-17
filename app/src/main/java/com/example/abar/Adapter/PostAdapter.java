@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.abar.CommentActivity;
 import com.example.abar.FollowersActivity;
-import com.example.abar.Fragments.PostDetailFragment;
 import com.example.abar.Fragments.ProfileFragment;
 import com.example.abar.Model.Post;
 import com.example.abar.Model.User;
