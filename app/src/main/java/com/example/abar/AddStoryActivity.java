@@ -17,8 +17,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
@@ -91,6 +94,7 @@ public class AddStoryActivity extends AppCompatActivity {
 
                         reference.child(storyid).setValue(hashMap);
                         pd.dismiss();
+                        addStoryNotification(storyid, myid); //FOR OBSERVER PATTERN
                         finish();
                     } else {
                         Toast.makeText(AddStoryActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
@@ -122,4 +126,29 @@ public class AddStoryActivity extends AppCompatActivity {
             finish();
         }
     }
+    private void addStoryNotification(String storyId, String publisherId) {
+        DatabaseReference followersRef = FirebaseDatabase.getInstance().getReference("Follow").child(publisherId).child("followers");
+        followersRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    String followerId = snapshot.getKey();
+
+                    HashMap<String, Object> map = new HashMap<>();
+                    map.put("userid", publisherId);
+                    map.put("text", "posted a new story.");
+                    map.put("storyid", storyId);
+                    map.put("isPost", false);
+
+                    FirebaseDatabase.getInstance().getReference().child("Notifications").child(followerId).push().setValue(map);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
 }

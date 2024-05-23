@@ -53,7 +53,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
         if (notification.isIsPost()) {
             holder.postImage.setVisibility(View.VISIBLE);
-            getPostImage(holder.postImage, notification.getPostid());
+            getPostImage(holder.postImage , notification.getPostid());
         } else {
             holder.postImage.setVisibility(View.GONE);
         }
