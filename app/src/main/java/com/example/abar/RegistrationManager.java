@@ -16,13 +16,20 @@ import java.util.HashMap;
 public class RegistrationManager {
     private static RegistrationManager instance;
 
-    private FirebaseAuth mAuth;
-    private DatabaseReference mRootRef;
+    private static FirebaseAuth mAuth;
+    private static DatabaseReference mRootRef;
+
 
     // Private constructor to prevent instantiation from outside
     private RegistrationManager() {
-        mAuth = FirebaseAuth.getInstance();
-        mRootRef = FirebaseDatabase.getInstance().getReference();
+//        mAuth = FirebaseAuth.getInstance();
+//        mRootRef = FirebaseDatabase.getInstance().getReference();
+        if (mAuth == null) {
+            mAuth = FirebaseAuth.getInstance();
+        }
+        if (mRootRef == null) {
+            mRootRef = FirebaseDatabase.getInstance().getReference();
+        }
     }
 
     // Static method to get the singleton instance
@@ -32,7 +39,14 @@ public class RegistrationManager {
         }
         return instance;
     }
+    public static void setFirebaseAuth(FirebaseAuth auth) {
+        mAuth = auth;
+    }
 
+    // Static method to set DatabaseReference instance
+    public static void setDatabaseReference(DatabaseReference databaseReference) {
+        mRootRef = databaseReference;
+    }
     // Method to register a new user
     public void registerUser(final String username, final String name, final String email, String password, final RegistrationCallback callback) {
         mAuth.createUserWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {

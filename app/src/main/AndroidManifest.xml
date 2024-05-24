@@ -36,9 +36,6 @@
             android:name=".FollowersActivity"
             android:exported="false" />
         <activity
-            android:name=".CommentsActivity"
-            android:exported="false" />
-        <activity
             android:name=".PostActivity"
             android:exported="false" />
         <activity
