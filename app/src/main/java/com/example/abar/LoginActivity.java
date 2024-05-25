@@ -24,7 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText password;
     private Button login;
     private TextView registerUser;
-    private FirebaseAuth mAuth;
+     FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,13 +52,14 @@ public class LoginActivity extends AppCompatActivity {
                 String txt_password = password.getText().toString();
 
                 loginUser(txt_email , txt_password);
+                //loginUser(mAuth, txt_email, txt_password);
 
             }
         });
 
     }
 
-    private void loginUser(String email,String password){
+     void loginUser(String email,String password){
         mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this ,new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -68,4 +69,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
 }

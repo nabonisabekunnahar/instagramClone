@@ -14,7 +14,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class OptionsActivity extends AppCompatActivity {
 
     private TextView settings;
-    private TextView logOut;
+    public TextView logOut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
